@@ -246,7 +246,7 @@ figure figcaption {
 }
 
 .topnav div {
-    max-width: 600px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
@@ -396,15 +396,15 @@ pre {
         <hr>
         <div class="flex-row">
             <p>
-                Denoising diffusion models (DDMs) have emerged as a powerful class of generative models. A forward diffusion process slowly perturbs the data, while
-                a deep model learns to gradually denoise. Synthesis amounts to solving a differential equation (DE) defined by the learnt model. Solving the DE requires
-                slow iterative solvers for high-quality generation. In this work, we propose <i>Higher-Order Denoising Diffusion Solvers</i> (GENIE): Based on truncated
-                Taylor methods, we derive a novel higher-order solver that significantly accelerates synthesis. Our solver relies on higher-order gradients of the perturbed
-                data distribution, that is, higher-order score functions. In practice, only Jacobian-vector products (JVPs) are required and we propose to extract them from
-                the first-order score network via automatic differentiation. We then distill the JVPs into a separate neural network that allows us to efficiently compute
-                the necessary higher-order terms for our novel sampler during synthesis. We only need to train a small additional head on top of the first-order score
-                network. We validate GENIE on multiple image generation benchmarks and demonstrate that GENIE outperforms all previous solvers. Unlike recent methods that
-                fundamentally alter the generation process in DDMs, our GENIE solves the true generative DE and still enables applications such as encoding and guided sampling.
+                Diffusion models (DMs) have revolutionized generative learning. They utilize a diffusion process to encode data into a simple Gaussian distribution.
+                However, encoding a complex, potentially multimodal data distribution into a single <i>continuous</i> Gaussian distribution arguably represents an unnecessarily challenging learning problem.
+                We propose <i><b>Dis</b>crete-<b>Co</b>ntinuous Latent Variable <b>Diff</b>usion Models (DisCo-Diff)</i> to simplify this task by introducing complementary <i>discrete</i> latent variables.
+                We augment DMs with learnable discrete latents, inferred with an encoder, and train DM and encoder end-to-end.
+                DisCo-Diff does not rely on pre-trained networks, making the framework universally applicable. The discrete latents significantly simplify learning the DM's complex noise-to-data mapping
+                by reducing the curvature of the DM's generative ODE. An additional autoregressive transformer models the distribution of the discrete latents,
+                a simple step because DisCo-Diff requires only few discrete variables with small codebooks.
+                We validate DisCo-Diff on toy data, several image synthesis tasks as well as molecular docking, and find that introducing discrete latents consistently improves model performance.
+                For example, DisCo-Diff achieves state-of-the-art FID scores on class-conditioned ImageNet-64/128 datasets with ODE sampler.
             </p>
         </div>
     </section>

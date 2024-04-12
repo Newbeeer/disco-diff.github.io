@@ -524,10 +524,11 @@ pre {
             </p>
 
             <p>
-                <b>Stage I: </b>
+                <b>Stage I</b>: The denoiser \(\mathbf{D}_\theta\) and the encoder \(\mathbf{E}_\phi\) are co-optimized in an end-to-end fashion.
+                    This is achieved by extending the denoising score matching objective to include learnable discrete latents \(\mathbf{z}\) associated with each data \(\mathbf{y}\).:
             </p>
             <p style="text-align: center; width: 100%">
-                \(\mathbf{x}_{t_{n+1}} = \mathbf{x}_{t_n} + h_n \mathbf{\epsilon}_\mathbf{\theta}(\mathbf{x}_{t_n}, t_n) + \frac{1}{2} h_n^2 \frac{d\mathbf{\epsilon}_\mathbf{\theta}}{dt}(\mathbf{x}_{t_n}, t_n).\)
+                \(\mathbb{E}_{\mathbf{y}} \mathbb{E}_{\mathbf{z} \sim \mathbf{E}_\phi(\mathbf{y})} \mathbb{E}_{t,\mathbf{n}}\left[\lambda(t)||\mathbf{D}_\theta(\mathbf{y}+\mathbf{n}, \sigma(t), \mathbf{z})-\mathbf{y}||^2\right]\)
             </p>
             <p>
                 Intuitively, the higher-order gradient term \(\frac{d\mathbf{\epsilon}_\mathbf{\theta}}{dt}\) used in GENIE models the local curvature of the ODE. This

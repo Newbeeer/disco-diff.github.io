@@ -279,7 +279,17 @@ figure figcaption {
     height: auto;
     margin: 0 10px; /* Adds horizontal spacing between images */
 }
-
+figure {
+    display: block;        /* Ensures the figure is treated as a block-level element */
+    margin-left: auto;     /* Auto margin for horizontal centering */
+    margin-right: auto;    /* Auto margin for horizontal centering */
+    width: 70%;            /* Sets the width of the figure, matching the image width */
+}
+img {
+    width: 100%;           /* Makes the image expand to fill the figure */
+    display: block;        /* Removes any default margin/padding of the image */
+    margin-bottom: 0px;    /* Specific style requirement from your original HTML */
+}
 pre {
     font-size: 0.9em;
     padding-left: 7px;
@@ -590,9 +600,9 @@ pre {
             </div>
         </div>
             <div class="paper-stuff">
-                <p><b>GENIE: Higher-Order Denoising Diffusion Solvers</b></p>
-                <p>Tim Dockhorn, Arash Vahdat, Karsten Kreis</p>
-                <p><i>Advances in Neural Information Processing Systems, 2022</i></p>
+                <p><b>DisCo-Diff: Enhancing Continuous Diffusion Models with Discrete Latents</b></p>
+                <p>Yilun Xu, Gabriele Corso, Tommi Jaakkola, Arash Vahdat, Karsten Kreis</p>
+                <p><i>International Conference on Machine Learning, 2024</i></p>
                 <div><span class="material-icons"> description </span><a href="https://arxiv.org/abs/2210.05475"> arXiv version</a></div>
                 <div><span class="material-icons"> insert_comment </span><a href="assets/dockhorn2022genie.bib"> BibTeX</a></div>
                 <div><span class="material-icons"> integration_instructions </span><a href="https://github.com/nv-tlabs/GENIE"> Code</a></div>
@@ -604,11 +614,11 @@ pre {
     <section id="bibtex">
         <h2>Citation</h2>
         <hr>
-        <pre><code>@inproceedings{dockhorn2022genie,
-    title={{{GENIE: Higher-Order Denoising Diffusion Solvers}}},
-    author={Dockhorn, Tim and Vahdat, Arash and Kreis, Karsten},
-    booktitle={Advances in Neural Information Processing Systems},
-    year={2022}
+        <pre><code>@inproceedings{xu2024discodiff,
+    title={{{DisCo-Diff: Enhancing Continuous Diffusion Models with Discrete Latents}}},
+    author={Xu, Yilun and Corso, Gabriele and Jaakkola, Tommi and Vahdat, Arash and Kreis, Karsten},
+    booktitle={International Conference on Machine Learning},
+    year={2024}
 }</code></pre>
     </section>
 </div>

@@ -512,8 +512,16 @@ pre {
         <hr>
         <div class="flex-row">
             <p>
-                The so-known DDIM solver is simply Euler's method applied to a reparameterization of the Probability Flow ODE. In this work, we apply the second TTM
-                to this re-parameterized ODE, which results in the GENIE scheme (simplified notation; see paper for details)
+                In our DisCo-Diff framework, we augment a DM's learning process with an $m$-dimensional discrete latent \(\mathbf{z} \in \mathbb{N}^m\), where each dimension is a random variable from a categorical distribution of codebook size \(k\).
+                There are three learnable components: the denoiser neural network \(\bm{D}_\theta\), corresponding to DisCo-Diff's DM, which predicts denoised images conditioned on diffusion time \(t\)
+                and discrete latent \(\mathbf{z}\); an encoder $\bm{E}_\phi$, used to infer discrete latents given clean images \(\mathbf{y}\).
+                It outputs a categorical distribution over the $k$ categories for each discrete latent; and a post-hoc auto-regressive model $\mA_\psi$, which approximates the distribution of the learned discrete latents $\rvz$ by
+                \(\prod_{i=1}^m p_\psi(\mathbf{z}_i | \mathbf{z}_{<i})\). DisCo-Diff's training process is divided into two stages.
+            </p>
+
+            <p>
+                <b>Stage I: </b>
+            </p>
             <p style="text-align: center; width: 100%">
                 \(\mathbf{x}_{t_{n+1}} = \mathbf{x}_{t_n} + h_n \mathbf{\epsilon}_\mathbf{\theta}(\mathbf{x}_{t_n}, t_n) + \frac{1}{2} h_n^2 \frac{d\mathbf{\epsilon}_\mathbf{\theta}}{dt}(\mathbf{x}_{t_n}, t_n).\)
             </p>

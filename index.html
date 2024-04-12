@@ -531,7 +531,7 @@ pre {
                 \(\mathbb{E}_{\mathbf{y}} \mathbb{E}_{\mathbf{z} \sim \mathbf{E}_\phi(\mathbf{y})} \mathbb{E}_{t,\mathbf{n}}\left[\lambda(t)||\mathbf{D}_\theta(\mathbf{y}+\mathbf{n}, \sigma(t), \mathbf{z})-\mathbf{y}||^2\right]\)
             </p>
             <p>
-                where the clean image $\mathbf{y}\sim p_{\textrm{data}}(\mathbf{y})$.
+                where the clean image \(\mathbf{y}\sim p_{\textrm{data}}(\mathbf{y})\).
                 The denoiser network \(\mathbf{D}_\theta\) can better capture the time-dependent score~(<i>i.e.,</i> achieving a reduced loss) if the score for each sub-distribution \(p(\mathbf{x}|\mathbf{z}; \sigma(t))\) is simplified.
                 Therefore, the encoder \(\mathbf{E}_\phi\), which has access to clean input data, is encouraged to encode useful information into the discrete latents and help the denoiser to more accurately reconstruct the data.
                 During training we rely on a continuous relaxation based on the Gumbel-Softmax distribution. We can interpret DisCo-Diff as a variational autoencoder (VAE) with discrete latents and a DM as decoder. VAEs often employ regularization on their latents.
@@ -558,27 +558,14 @@ pre {
 
         <div class="inline-title">
             <p>
-                <b>Learning Higher-Order Derivatives.</b> Regular DDMs learn a model \(\mathbf{\epsilon}_\mathbf{\theta}\) for the first-order score;
-                however, the higher-order gradient term \(\frac{d\mathbf{\epsilon}_\mathbf{\theta}}{dt}\) required for GENIE is not immediately
-                available to us, unlike in the toy example above. Given a DDM, that is, given \(\mathbf{\epsilon}_\mathbf{\theta}\), we could compute the higher-order derivative using automatic differentiation
-                (AD). This would, however, make a single step of GENIE at least twice as costly as DDIM. To avoid this overhead, we propose to first distill
-                the higher-order derivative into a separate neural network \(\mathbf{k}_\mathbf{\psi}\). We implement this neural network as a small prediction
-                head on top of the standard DDM U-Net. During distillation training, we use the slow AD-based calculation of the higher-order derivative,
-                but during synthesis we call the fast network \(\mathbf{k}_\mathbf{\psi}\). The model structure is visualized below.
+                <b>Validation in 2D.</b> We use a simple 2D mixture of Gaussians to demonstrate that discrete latents reduce the complex ODE mapping in DMs and make the DM's learning task easier.
+                The single noise-to-data mapping is effectively partitioned into a set of simpler mappings, each with less curvature in its generative ODE.
+                In the figure above, we observe highly non-linear generative ODE trajectories near the data in DM's ODE. This effect is significantly stronger in high dimensions.
+                In contrast, DisCo-Diff learns to capture the different modes, and DisCo-Diff's DM component models the individual modes.
+                The DM's ODE trajectories for different latents are now almost perfectly straight, indicating a simple conditional score function.
             </p>
         </div>
-        <center>
-        <div class="wrapper">
-            <figure>
-            <img width="70%" src="./assets/blocks.png" style="margin-bottom: 0px;">
-            </figure>
-        </div>
-        </center>
-        <p class="caption">
-            Our distilled model \(\mathbf{k}_\mathbf{\psi}\) that predicts the gradient \(\frac{d\mathbf{\epsilon}_\mathbf{\theta}}{dt}\) is implemented as a
-            small additional output head on top of the first-order score model \(\mathbf{\epsilon}_\mathbf{\theta}.\) This model structure makes the evaluation of \(\mathbf{k}_\mathbf{\psi}\)
-            fast when compared to \(\mathbf{\epsilon}_\mathbf{\theta}\) itself. Purple layers are used both in \(\mathbf{\epsilon}_\mathbf{\psi}\) and \(\mathbf{k}_\mathbf{\psi}\); green layers are specific for \(\mathbf{\epsilon}_\mathbf{\psi}\) and \(\mathbf{k}_\mathbf{\psi}\).
-        </p><p class="caption">
+
 
     </section>
 

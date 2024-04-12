@@ -267,6 +267,18 @@ figure figcaption {
 /*    !*vertical-align: middle;*!*/
 /*}*/
 
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Add some space at the top */
+}
+.image-link img {
+    width: 100px; /* You can adjust the width as needed */
+    height: auto;
+    margin: 0 10px; /* Adds horizontal spacing between images */
+}
+
 pre {
     font-size: 0.9em;
     padding-left: 7px;
@@ -322,9 +334,15 @@ pre {
 <!--        <a href="https://www.csail.mit.edu/" ><img src="assets/csail.png"></a>-->
 <!--    </div>-->
 <!--</div>-->
-    <div>
-        <a href="https://www.nvidia.com/"><img src="assets/nvidia.svg"></a>
-        <a href="https://www.csail.mit.edu/" ><img src="assets/csail.png"></a>
+    <div class="image-container">
+        <!-- Link to NVIDIA's website with their logo -->
+        <a class="image-link" href="https://www.nvidia.com/">
+            <img src="assets/nvidia.svg" alt="NVIDIA Logo">
+        </a>
+        <!-- Link to MIT CSAIL's website with their logo -->
+        <a class="image-link" href="https://www.csail.mit.edu/">
+            <img src="assets/csail.png" alt="CSAIL Logo">
+        </a>
     </div>
 <div class="container">
     <div class="paper-title">

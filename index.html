@@ -476,13 +476,13 @@ pre {
         <div class="wrapper">
             <center>
             <figure>
-            <img width="30%" src="./assets/vis_128.png" style="margin-bottom: 0px;">
+            <img width="20%" src="./assets/vis_128.png" style="margin-bottom: 0px;">
             <figcaption>(a) Random discrete latent</figcaption>
             </center>
             </figure>
             <figure>
             <center>
-            <img width="100%" src="./assets/fix_z_2.png" style="margin-bottom: 0px;">
+            <img width="110%" src="./assets/fix_z_2.png" style="margin-bottom: 0px;">
             <figcaption>(b) Shared discrete latents </figcaption>
             </center>
             </figure>
@@ -516,7 +516,7 @@ pre {
         <hr>
         <div class="flex-row">
             <p>
-                In our DisCo-Diff framework, we augment a DM's learning process with an $m$-dimensional discrete latent \(\mathbf{z} \in \mathbb{N}^m\), where each dimension is a random variable from a categorical distribution of codebook size \(k\).
+                In our DisCo-Diff framework, we augment a DM's learning process with an \(m\)-dimensional discrete latent \(\mathbf{z} \in \mathbb{N}^m\), where each dimension is a random variable from a categorical distribution of codebook size \(k\).
                 There are three learnable components: the denoiser neural network \(\mathbf{D}_\theta\), corresponding to DisCo-Diff's DM, which predicts denoised images conditioned on diffusion time \(t\)
                 and discrete latent \(\mathbf{z}\); an encoder \(\mathbf{E}_\phi\), used to infer discrete latents given clean images \(\mathbf{y}\).
                 It outputs a categorical distribution over the \(k\) categories for each discrete latent; and a post-hoc auto-regressive model \(\mathbf{A}_\psi\), which approximates the distribution of the learned discrete latents \(\mathbf{z}\) by

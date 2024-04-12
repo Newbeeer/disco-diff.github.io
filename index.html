@@ -283,9 +283,10 @@ figure {
     display: block;        /* Ensures the figure is treated as a block-level element */
     margin-left: auto;     /* Auto margin for horizontal centering */
     margin-right: auto;    /* Auto margin for horizontal centering */
-    width: 100%;            /* Sets the width of the figure, matching the image width */
+    width: 80%;            /* Sets the width of the figure, matching the image width */
 }
 img {
+    width: 100%;           /* Makes the image expand to fill the figure */
     display: block;        /* Removes any default margin/padding of the image */
     margin-bottom: 0px;    /* Specific style requirement from your original HTML */
 }
@@ -399,7 +400,7 @@ pre {
 
     <section id="teaser-image">
             </p><figure style="margin-top: 20px; margin-bottom: 20px;">
-                <img width="90%" src="./assets/dcdm_pipeline_fig_full.png" style="margin-bottom: 20px;">
+                <img width="100%" src="./assets/dcdm_pipeline_fig_full.png" style="margin-bottom: 20px;">
                 </figure>
                 <p class="caption">
                     <b>Dis</b>crete-<b>Co</b>ntinuous Latent Variable <b>Diff</b>usion Models (DisCo-Diff) augment DMs with additional <i>discrete</i>

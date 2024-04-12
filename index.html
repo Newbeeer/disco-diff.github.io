@@ -537,6 +537,12 @@ pre {
                 During training we rely on a continuous relaxation based on the Gumbel-Softmax distribution. We can interpret DisCo-Diff as a variational autoencoder (VAE) with discrete latents and a DM as decoder. VAEs often employ regularization on their latents.
                 We did not find this to be necessary, as we use only very low-dimensional latent variables, <i>e.g.,</i> 10 in our ImageNet experiments, with relatively small codebooks.
             </p>
+
+            <p>
+                <b>Stage II</b>: We post-hoc the autoregressive model \(\mathbf{A}_\psi\) to capture the distribution of the discrete latent variables \(p_\psi(\mathbf{z})\) defined by pushing the clean data through the trained encoder, using a standard maximum likelihood objective.
+                Since we set $m$ to a relatively small number, it becomes very easy for the model to handle such short discrete vectors, which makes this second-stage training efficient. Also the additional sampling overhead due to this autoregressive component on top of the DM becomes negligible.
+                At inference time, when using DisCo-Diff to generate novel samples, we first sample a discrete latent variable from the autoregressive model, and then sample the DM with an ODE or SDE solver.
+            </p>
         </div>
 
         <center>

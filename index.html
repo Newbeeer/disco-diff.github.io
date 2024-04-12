@@ -367,12 +367,15 @@ pre {
 
     <section id="teaser-image">
             </p><figure style="margin-top: 20px; margin-bottom: 20px;">
-                <img width="100%" src="./assets/genie_pipeline.png" style="margin-bottom: 20px;">
+                <img width="100%" src="./assets/dcdm_pipeline_fig_full.pdf" style="margin-bottom: 20px;">
                 <p class="caption">
-                    Our novel <i>Higher-Order Denoising Diffusion Solver</i> (GENIE) relies on the second <i>truncated Taylor method</i> (TTM) to simulate a
-                    (re-parameterized) Probability Flow ODE for sampling from denoising diffusion models. The second TTM captures the local curvature
-                    of the ODE's gradient field and enables more accurate extrapolation and larger step sizes than the first TTM (Euler's method),
-                    which previous methods such as DDIM utilize.
+                    <b>Dis</b>crete-<b>Co</b>ntinuous Latent Variable <b>Diff</b>usion Models (DisCo-Diff) augment DMs with additional <i>discrete</i>
+                    latent variables that capture global appearance patterns, here shown for images of huskies.
+                    <b>(a)</b> During training, discrete latents are inferred through an encoder, for images a vision transformer,
+                    and fed to the DM via cross-attention. Backpropagation is facilitated by continuous relaxation with a Gumbel-Softmax distribution.
+                    To sample novel images, an additional autoregressive model is learnt over the distribution of discrete latents.
+                    <b>(b)</b> Schematic visualization of generative denoising diffusion trajectories.
+                    Different colors indicate different discrete latent variables, pushing the trajectories toward different modes.
                 </p><p class="caption">
             </p>
     </section>

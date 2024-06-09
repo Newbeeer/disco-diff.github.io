@@ -601,8 +601,11 @@ pre {
         <h2>Experimental Results (TODO) </h2>
         <hr>
         <div class="flex-row">
-            <p><b>Image Synthesis</b>: We extensively validate DisCo-Diff on ImageNet (\(64 \times 64\)) and ImageNet (\(128 \times 128\)).
-                We demonstrate that DisCo-Diff achieves the new state-of-the-art on class-conditioned ImageNet-64/ImageNet-128 when using ODE sampler. See paper for details.
+            <p><b>Image Synthesis</b>: We extensively validate DisCo-Diff on class-conditioned ImageNet (\(64 \times 64\)) and ImageNet (\(128 \times 128\)).
+                In practice, we integrate discrete latent into EDM on ImageNet-64, and VDM++ on ImageNet-128 to build DisCo-Diff.
+                We demonstrate that DisCo-Diff achieves the new state-of-the-art on class-conditioned ImageNet-64/ImageNet-128 when using ODE sampler,
+                <b>improving the FID score of EDM from 2.36 to 1.66, and the FID score of VDM++ from 2.29 to 1.98.</b>
+                When using stochastic samplers, DisCo-Diff further set the current record FID scores of 1.22 on ImageNet-64 and 1.73 on ImageNet-128.
             </p>
 
             <center>

@@ -612,10 +612,24 @@ pre {
             </center>
 
 
-           <p><b>Molecular Docking</b>:
+           <p><b>Molecular Docking</b>: We test DisCo-Diff also on molecular docking, building upon the DiffDock framework. e see that also
+                in this domain discrete latents provide improvements, with the success rate on the full dataset increasing from 32.9% to 35.4% and from 13.9% to 18.5%
+                when considering only test complexes with unseen proteins. Below, we visualize two examples from the test set which highlight how the model learns to
+                associate distinct sets of poses with different latents
            </p>
 
 
+            <center>
+            <figure style="margin-top: 0px; margin-bottom: 0px;">
+                <img width="90%" src="./assets/dcdm_docking_vis.png" style="margin-bottom: 5px;">
+            </figure>
+            </center>
+
+            <p style="margin-bottom: 5px;" class="caption">
+               Examples of alternative docking poses modeled when conditioning on different discrete latents, the “correct” \(z\) (i.e. same
+                as the encoder) and an incorrect \(\hat{z}\). The DM maps them to two
+                distinct sets of plausible orientations with which the ligand could fit in the pocket.
+            </p><p class="caption">
 
 
 

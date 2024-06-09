@@ -410,6 +410,21 @@ pre {
 <!--        </div>-->
 <!--    </section>-->
 
+        <div class="wrapper">
+            <center>
+            <figure>
+            <img width="70%" src="./assets/image_z.png" style="margin-bottom: 0px;">
+            <figcaption>Images with shared discrete latents</figcaption>
+            </center>
+            </figure>
+            <figure>
+            <center>
+            <img width="75%" src="./assets/docking_z.png" style="margin-bottom: 0px;">
+            <figcaption>Ligand positions conditioned on shared discrete latent~(indicated by same color) </figcaption>
+            </center>
+            </figure>
+        </div>
+
     <section id="abstract"/>
         <h2>Abstract</h2>
         <hr>
@@ -454,7 +469,7 @@ pre {
                 its denoising task. These discrete latents are inferred through an encoder network and learnt end-to-end together with the DM.
                 Thereby, the discrete latents directly learn to encode information that is beneficial for <b>reducing the DM's score matching objective and making the DM's hard task of
                 mapping simple noise to complex data easier</b>. DisCo-Diff learns to capture the different modes, and DisCo-Diff's DM component models the individual modes.
-                The DM's ODE trajectories for different latents are now <b>almost perfectly straight</b> (see the left figure above), indicating a simple conditional score function.
+                The DM's ODE trajectories for different latents are now <b>almost perfectly straight</b> (see the right figure above), indicating a simple conditional score function.
                 We do not rely on domain-specific pre-trained encoder networks,
                 making our framework <b>general and universally applicable</b>. To facilitate sampling of discrete latent variables during inference,
                 we learn an autoregressive model over the discrete latents in a second step.

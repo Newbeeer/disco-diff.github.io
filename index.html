@@ -559,7 +559,7 @@ pre {
             </p>
             <p>
                 where the clean image \(\mathbf{y}\sim p_{\textrm{data}}(\mathbf{y})\).
-                The denoiser network \(\mathbf{D}_\theta\) can better capture the time-dependent score~(<i>i.e.,</i> achieving a reduced loss) if the score for each sub-distribution \(p(\mathbf{x}|\mathbf{z}; \sigma(t))\) is simplified.
+                The denoiser network \(\mathbf{D}_\theta\) can better capture the time-dependent score (<i>i.e.,</i> achieving a reduced loss) if the score for each sub-distribution \(p(\mathbf{x}|\mathbf{z}; \sigma(t))\) is simplified.
                 Therefore, the encoder \(\mathbf{E}_\phi\), which has access to clean input data, is encouraged to encode useful information into the discrete latents and help the denoiser to more accurately reconstruct the data.
                 During training we rely on a continuous relaxation based on the Gumbel-Softmax distribution. We can interpret DisCo-Diff as a variational autoencoder (VAE) with discrete latents and a DM as decoder. VAEs often employ regularization on their latents.
                 We did not find this to be necessary, as we use only very low-dimensional latent variables, <i>e.g.,</i> 10 in our ImageNet experiments, with relatively small codebooks.

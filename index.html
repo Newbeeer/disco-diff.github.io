@@ -551,7 +551,7 @@ pre {
             </p>
 
             <p>
-                <b>Stage I</b>: The denoiser \(\mathbf{D}_\theta\) and the encoder \(\mathbf{E}_\phi\) are co-optimized in an end-to-end fashion.
+                <b>Stage I</b>: We follow the <a href="https://arxiv.org/abs/2206.00364">EDM</a> framework to incorporate the discrete latents into the diffusion models. The denoiser \(\mathbf{D}_\theta\) and the encoder \(\mathbf{E}_\phi\) are co-optimized in an end-to-end fashion.
                     This is achieved by extending the denoising score matching objective to include learnable discrete latents \(\mathbf{z}\) associated with each data \(\mathbf{y}\).:
             </p>
             <p style="text-align: center; width: 100%">
@@ -561,13 +561,14 @@ pre {
                 where the clean image \(\mathbf{y}\sim p_{\textrm{data}}(\mathbf{y})\).
                 The denoiser network \(\mathbf{D}_\theta\) can better capture the time-dependent score (<i>i.e.,</i> achieving a reduced loss) if the score for each sub-distribution \(p(\mathbf{x}|\mathbf{z}; \sigma(t))\) is simplified.
                 Therefore, the encoder \(\mathbf{E}_\phi\), which has access to clean input data, is encouraged to encode useful information into the discrete latents and help the denoiser to more accurately reconstruct the data.
-                During training we rely on a continuous relaxation based on the Gumbel-Softmax distribution. We can interpret DisCo-Diff as a variational autoencoder (VAE) with discrete latents and a DM as decoder. VAEs often employ regularization on their latents.
+                During training we rely on a continuous relaxation based on the Gumbel-Softmax distribution.
+                We can interpret DisCo-Diff as a variational autoencoder (VAE) with discrete latents and a DM as decoder. VAEs often employ regularization on their latents.
                 We did not find this to be necessary, as we use only very low-dimensional latent variables, <i>e.g.,</i> 10 in our ImageNet experiments, with relatively small codebooks.
             </p>
 
             <p>
-                <b>Stage II</b>: We post-hoc the autoregressive model \(\mathbf{A}_\psi\) to capture the distribution of the discrete latent variables \(p_\psi(\mathbf{z})\) defined by pushing the clean data through the trained encoder, using a standard maximum likelihood objective.
-                Since we set \(m\) to a relatively small number, it becomes very easy for the model to handle such short discrete vectors, which makes this second-stage training efficient. Also the additional sampling overhead due to this autoregressive component on top of the DM becomes negligible.
+                <b>Stage II</b>: We train a post-hoc autoregressive model \(\mathbf{A}_\psi\) to capture the distribution of the discrete latent variables \(p_\psi(\mathbf{z})\) defined by pushing the clean data through the trained encoder, using a standard maximum likelihood objective.
+                Since we set \(m\) to a relatively small number, it becomes very easy for the model to handle such short discrete vectors, which makes this second-stage training efficient. Also the additional sampling overhead due to this autoregressive component on top of the DM becomes negligible (only around 0.5% in our main image experiments).
                 At inference time, when using DisCo-Diff to generate novel samples, we first sample a discrete latent variable from the autoregressive model, and then sample the DM with an ODE or SDE solver.
             </p>
         </div>
@@ -601,11 +602,11 @@ pre {
         <h2>Experimental Results </h2>
         <hr>
         <div class="flex-row">
-            <p><b>Image Synthesis</b>: We extensively validate DisCo-Diff on class-conditioned ImageNet (\(64 \times 64\)) and ImageNet (\(128 \times 128\)).
-                In practice, we integrate discrete latent into EDM on ImageNet-64, and VDM++ on ImageNet-128 to build DisCo-Diff.
+            <p><b>Image Synthesis</b>: We extensively validate DisCo-Diff on class-conditioned ImageNet (\(64 \times 64\) and \(128 \times 128\)).
+                In practice, we integrate discrete latents into <a href="https://arxiv.org/abs/2206.00364">EDM</a> on ImageNet-64, and <a href="https://arxiv.org/abs/2303.00848">VDM++</a> on ImageNet-128 to build DisCo-Diff.
                 We demonstrate that DisCo-Diff achieves the new state-of-the-art on class-conditioned ImageNet-64/ImageNet-128 when using ODE sampler,
                 <b>improving the FID score of EDM from 2.36 to 1.66, and the FID score of VDM++ from 2.29 to 1.98.</b>
-                When using stochastic samplers, DisCo-Diff further set the current record FID scores of 1.22 on ImageNet-64 and 1.73 on ImageNet-128.
+                When using stochastic samplers, DisCo-Diff further sets the current record FID scores of 1.22 on ImageNet-64 and 1.73 on ImageNet-128.
             </p>
 
             <center>
@@ -615,7 +616,7 @@ pre {
             </center>
 
 
-           <p><b>Molecular Docking</b>: We test DisCo-Diff also on molecular docking, building upon the DiffDock framework. e see that also
+           <p><b>Molecular Docking</b>: We test DisCo-Diff also on molecular docking, building upon the <a href="https://arxiv.org/abs/2210.01776">DiffDock</a> framework. We see that also
                 in this domain discrete latents provide improvements, with the success rate on the full dataset increasing from 32.9% to 35.4% and from 13.9% to 18.5%
                 when considering only test complexes with unseen proteins. Below, we visualize two examples from the test set which highlight how the model learns to
                 associate distinct sets of poses with different latents
@@ -631,7 +632,7 @@ pre {
             <p style="margin-bottom: 5px;" class="caption">
                Examples of alternative docking poses modeled when conditioning on different discrete latents, the “correct” \(z\) (i.e. same
                 as the encoder) and an incorrect \(\hat{z}\). The DM maps them to two
-                distinct sets of plausible orientations with which the ligand could fit in the pocket.
+                distinct sets of orientations with which the ligand could fit in the pocket.
             </p><p class="caption">
 
 
